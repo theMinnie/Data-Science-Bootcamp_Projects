@@ -1,0 +1,75 @@
+# Function to take pizza order
+take_order <- function() {
+  # Welcome message
+  cat("Welcome to Happy Pizza Day Restaurant!\n")
+  # Get customer name
+  cat("What is your name?\n")
+  name <- readline()
+  cat(paste0("Hello, ", name, " ! Our pizza options are: Pepperoni, Mushroom, Veggie\n"))
+
+
+# Pizza options
+  options <- c("Pepperoni", "Mushroom", "Veggie")
+  # Pizza sizes and prices
+  sizes <- list(small = 299, medium = 399, large = 499)
+  # Pizza crusts
+  crusts <- c("Thin", "Thick", "Stuffed")
+
+
+# Order details
+  order_details <- list()
+  repeat {
+ 
+ 
+ # Ask for pizza selection
+    cat("What pizza would you like to order?\n")
+    pizza <- tolower(readline())
+    if (!(pizza %in% options)) {
+      cat("Sorry, ", pizza, " is not available. Please choose from the following options: ", paste(options, collapse = ", "), "\n")
+      next
+    }
+    order_details$pizza <- pizza
+    # Ask for pizza size
+    cat(paste0("Our pizza sizes and prices are: ", paste0(names(sizes), " is ", unlist(sizes), "THB", collapse = "; "), "\n"))
+    cat("What size would you like?\n")
+    size <- tolower(readline())
+    if (!(size %in% names(sizes))) {
+      cat("Sorry, ", size, " is not a valid size. Please choose from the following options: ", paste(names(sizes), collapse = ", "), "\n")
+      next
+    }
+    order_details$size <- size
+    # Ask for pizza crust
+    cat("Our pizza crusts are: ", paste(crusts, collapse = ", "), "\n")
+    cat("What crust would you like?\n")
+    crust <- tolower(readline())
+    if (!(crust %in% crusts)) {
+      cat("Sorry, ", crust, " is not a valid crust. Please choose from the following options: ", paste(crusts, collapse = ", "), "\n")
+      next
+    }
+    order_details$crust <- crust
+    # Add pizza to order summary
+    cat(paste0("You ordered a ", order_details$size, " ", order_details$crust, " ", order_details$pizza, " pizza for ", sizes[[order_details$size]], " THB.\n"))
+    # Ask if customer wants to order another pizza
+    cat("Would you like to order another pizza? (yes/no)\n")
+    another_pizza <- tolower(readline())
+    if (another_pizza == "no") {
+      break
+    }
+  }
+ 
+ 
+ # Ask for delivery option
+  cat("Do you want to pick up at the restaurant or have it delivered? (pickup/delivery)\n")
+  delivery_option <- tolower(readline())
+  if (delivery_option == "delivery") {
+
+# Ask for delivery address
+    cat("Please enter your delivery address:\n")
+    delivery_address <- readline()
+    order_details$delivery_option <- delivery_option
+    order_details$delivery_address <- delivery_address
+
+# Ask for customer phone number and email
+    cat("Please enter your phone number:\n")
+    phone_number <- readline()
+    cat("Please enter your email address
